@@ -1,120 +1,103 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+  import { goto } from '$app/navigation'
+  import { fade } from 'svelte/transition'
+
+
+  let navigation = [
+    { name: 'Start', href: '/', current: true },
+    { name: 'Nachhaltigkeit', href: '/nachhaltigkeit', current: false },
+    { name: 'Portfolio', href: '/portfolio', current: false },
+    { name: 'Team', href: '/team', current: false },
+    { name: 'Kontakt', href: '/kontakt', current: false },
+  ]
+
+  let open = false
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
+  function setActive(routeName){
+    navigation.forEach((item) => item.current = item.name === routeName)
+    navigation = navigation
+  }
+
+  function navigateTo(route){
+    goto(route.href)
+    setActive(route.name)
+    console.log(route)
+    open = false
+  }
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
+	<!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-kurz-white">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-kurz-green hover:text-white hover:bg-kurz-green focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" on:click={() => open = !open}>
+          <span class="sr-only">Open main menu</span>
+          {#if open}
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.path === '/about'}><a sveltekit:prefetch href="/about">About</a></li>
-			<li class:active={$page.path === '/todos'}><a sveltekit:prefetch href="/todos">Todos</a></li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
+          {:else}
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          {/if}
+        </button>
+      </div>
+      <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex-shrink-0 flex items-center">
 
-	<div class="corner">
-		<!-- TODO put something else here? github link? -->
-	</div>
+        	<img src="/assets/icons/malermeister-kurz-logo.svg" class="block h-12 w-auto" alt="Malermeister Kurz Logo: Ein Blatt mit einem Pinsel in der Mitte."/>
+        
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4 h-full items-center justify-center">
+            {#each navigation as item}
+               <a
+                key={item.name}
+                on:click={() => navigateTo(item)}
+                class={classNames(
+                  item.current ? 'bg-kurz-green text-white' : 'text-gray-700 hover:bg-kurz-green hover:text-white',
+                  'px-3 py-2 rounded-md text-sm font-medium'
+                )}
+                aria-current={item.current ? 'page' : undefined}
+              >
+                {item.name}
+              </a>
+            {/each}
+          </div>
+        </div>
+      </div>	
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  {#if open}
+    <div class="sm:hidden z-10 bg-kurz-white absolute w-full flex items-center justify-center" id="mobile-menu" transition:fade>
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        {#each navigation as item}
+         <a
+          key={item.name}
+          on:click={() => navigateTo(item)}
+          class={classNames(
+            item.current ? 'bg-kurz-green text-white' : 'text-gray-700 hover:bg-kurz-green hover:text-white',
+            'block px-3 py-2 rounded-md text-center font-medium cursor-default'
+          )}
+          aria-current={item.current ? 'page' : undefined}
+          >
+              {item.name}
+          </a>
+        {/each}
+      </div>
+    </div>
+  {/if}
+</nav>
 </header>
-
-<style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 10%;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--accent-color);
-	}
-</style>
