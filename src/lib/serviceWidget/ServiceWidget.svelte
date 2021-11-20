@@ -7,7 +7,7 @@
             text: 'Eine fachmännisch ausgeführte Fassadenrenovierung sorgt nicht nur optisch für einen echten „Hingucker“, sondern schützt vor allem auch die bestehenden Untergründe.',
             image: '/assets/images/services/fassade.webp',
             icon: '/assets/icons/004-interior-design.svg',
-            current: false
+            current: true
         },
         {
             name: 'Wohnraumgestaltung',
@@ -52,7 +52,7 @@
 
 <div class="flex-column">
     <div class="sm:inline-block grid bg-transparent m-8 sm:p-8 p-0">
-        
+
         {#each services as item}
         <button
             class={classNames(

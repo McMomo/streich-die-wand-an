@@ -3,9 +3,10 @@
   import { goto } from '$app/navigation'
   import { fade } from 'svelte/transition'
 
+  import { onMount } from 'svelte';
 
   let navigation = [
-    { name: 'Start', href: '/', current: true },
+    { name: 'Start', href: '/', current: false },
     { name: 'Nachhaltigkeit', href: '/nachhaltigkeit', current: false },
     { name: 'Portfolio', href: '/portfolio', current: false },
     { name: 'Team', href: '/team', current: false },
@@ -13,6 +14,14 @@
   ]
 
   let open = false
+
+  onMount(async () => {
+    console.log($page.path)
+    const path = navigation.find(entry => entry.href === $page.path)
+	if (path) {
+		setActive(path) 
+	}
+  })
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -56,7 +65,7 @@
         <div class="flex-shrink-0 flex items-center">
 
         	<img src="/assets/icons/malermeister-kurz-logo.svg" class="block h-12 w-auto" alt="Malermeister Kurz Logo: Ein Blatt mit einem Pinsel in der Mitte."/>
-        
+
         </div>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4 h-full items-center justify-center">
@@ -75,7 +84,7 @@
             {/each}
           </div>
         </div>
-      </div>	
+      </div>
     </div>
   </div>
 
