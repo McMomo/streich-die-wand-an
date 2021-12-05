@@ -7,7 +7,7 @@
 
   let navigation = [
     { name: 'Start', href: '/', current: false },
-    { name: 'Nachhaltigkeit', href: '/nachhaltigkeit', current: false },
+    { name: 'Nachhaltigkeit', href: '/sustainable', current: false },
     { name: 'Portfolio', href: '/portfolio', current: false },
     { name: 'Team', href: '/team', current: false },
     { name: 'Kontakt', href: '/kontakt', current: false },
@@ -19,7 +19,7 @@
     console.log($page.path)
     const path = navigation.find(entry => entry.href === $page.path)
 	if (path) {
-		setActive(path) 
+		setActive(path)
 	}
   })
 
