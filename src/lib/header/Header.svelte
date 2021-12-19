@@ -10,7 +10,7 @@
     { name: 'Nachhaltigkeit', href: '/sustainable', current: false },
     { name: 'Portfolio', href: '/portfolio', current: false },
     { name: 'Team', href: '/team', current: false },
-    { name: 'Kontakt', href: '/kontakt', current: false },
+    { name: 'Kontakt', href: '/contact', current: false },
   ]
 
   let open = false

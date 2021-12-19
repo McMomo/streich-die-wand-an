@@ -71,7 +71,7 @@
     {#each services as item}
         <figure class={classNames(
             item.current ? 'flex-column md:flex': 'hidden',
-            'bg-white rounded-xl m-8 shadow-md rounded-md overflow-hidden')
+            'bg-white m-8 shadow-md rounded-md overflow-hidden')
         }>
             <img class="w-full h-32 md:w-64 md:h-auto object-cover" src={item.image} alt={item.name} width="384" height="512">
             <div class="pt-6 p-8 text-center md:text-left space-y-4">

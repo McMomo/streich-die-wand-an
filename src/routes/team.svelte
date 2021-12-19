@@ -38,12 +38,12 @@
 
 <section class="bg-kurz-white" transition:fade>
 	<div class="flex flex-wrap justify-center m-8">
-  		<div class="md:flex w-full rounded-xl shadow-md rounded-md overflow-hidden">
+  		<div class="md:flex w-full shadow-md rounded-md overflow-hidden">
     		<img src="/assets/images/team/team.webp" alt="Das Malermeister Kurz Team" class="rounded w-full max-h-80 align-middle border-none m-0 object-cover" />
   		</div>
 	</div>
 	{#each team as member}
-		<figure class="md:flex bg-white rounded-xl m-8 p-8 md:p-0 shadow-md rounded-md overflow-hidden">
+		<figure class="md:flex bg-white m-8 p-8 md:p-0 shadow-md rounded-md overflow-hidden">
 		  <img class="w-32 h-32 md:w-64 md:h-auto md:rounded-none md:object-cover object-cover rounded-full mx-auto" src={member.image} alt={member.name} width="384" height="512">
 		  <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
 		    <blockquote>

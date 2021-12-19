@@ -7,9 +7,11 @@ module.exports = {
     colors: {
       white: colors.white,
       gray: colors.warmGray,
+      black: colors.black,
       'kurz-green': '#468038',
       'kurz-brown': '#a37243',
-      'kurz-white': '#FFFCF0'
+      'kurz-white': '#FFFCF0',
+      'kurz-gray': '#2a2a2a'
     },
   },
   variants: {
