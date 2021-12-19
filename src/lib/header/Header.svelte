@@ -70,15 +70,14 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4 h-full items-center justify-center">
             {#each navigation as item}
-               <a
-                key={item.name}
+               <a key={item.name}
                 on:click={() => navigateTo(item)}
                 class={classNames(
                   item.current ? 'bg-kurz-green text-white' : 'text-gray-700 hover:bg-kurz-green hover:text-white',
                   'px-3 py-2 rounded-md text-sm font-medium'
                 )}
                 aria-current={item.current ? 'page' : undefined}
-              >
+                href="">
                 {item.name}
               </a>
             {/each}
@@ -93,15 +92,14 @@
     <div class="sm:hidden z-10 bg-kurz-white absolute w-full flex items-center justify-center" id="mobile-menu" transition:fade>
       <div class="px-2 pt-2 pb-3 space-y-1">
         {#each navigation as item}
-         <a
-          key={item.name}
+         <a key={item.name}
           on:click={() => navigateTo(item)}
           class={classNames(
             item.current ? 'bg-kurz-green text-white' : 'text-gray-700 hover:bg-kurz-green hover:text-white',
             'block px-3 py-2 rounded-md text-center font-medium cursor-default'
           )}
           aria-current={item.current ? 'page' : undefined}
-          >
+          href="">
               {item.name}
           </a>
         {/each}

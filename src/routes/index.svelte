@@ -1,5 +1,4 @@
 <script>
-	// import ServiceWidget from '$lib/serviceWidget/ServiceWidget.svelte'
 	export const prerender = true;
 
 	let services = [
@@ -55,16 +54,18 @@
 </svelte:head>
 
 <section class="flex-column">
-    <div class="sm:inline-block grid bg-transparent m-8 sm:p-8 p-0">
+    <div class="sm:inline-block flex w-full place-content-center bg-transparent m-0 p-4 sm:p-8">
 
         {#each services as item}
         <button
             class={classNames(
             item.current ? 'bg-kurz-green text-white': 'text-kurz-green bg-transparent',
-            'inline-flex border border-solid border-kruz-green hover:bg-kurz-green hover:text-white font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150')
+            'inline-flex border border-solid border-kruz-green hover:bg-kurz-green hover:text-white font-bold uppercase text-sm p-3 sm:px-6 sm:py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150')
             } type="button" on:click={() => setCurrent(item.name)}>
-            <img src={item.icon} class={classNames( item.current ? 'invertwhite' : '', "h-auto w-6 mr-3 invertcolor")}/>
-            {item.name}
+            <img src={item.icon} class={classNames( item.current ? 'invertwhite' : '', "h-auto w-6 sm:mr-3 invertcolor")} alt={"Beispiel einer/s " + item.name}/>
+            <span class="hidden sm:block">
+                {item.name}
+            </span>
         </button>
         {/each}
     </div>

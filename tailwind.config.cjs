@@ -10,7 +10,8 @@ module.exports = {
       black: colors.black,
       'kurz-green': '#468038',
       'kurz-brown': '#a37243',
-      'kurz-white': '#FFFCF0',
+      'kurz-white': '#FFF',
+      'alt-white': '#FFFCF0',
       'kurz-gray': '#2a2a2a'
     },
   },
